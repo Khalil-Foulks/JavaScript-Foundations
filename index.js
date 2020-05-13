@@ -50,16 +50,25 @@ If your name is `Oscar` mortgageCalculator() should return "Oscar, your monthly 
 */
 
  function mortgageCalculator(name){
+    let principle = 200000;
+    let interestRate = 0.05;
+    let years= 30;
+    
+    let monthlyInterestRate = interestRate / 12;
+
+    let periods = years * 12;
+    
     let numerator = (monthlyInterestRate * (Math.pow((1 + monthlyInterestRate),periods)));
     
     let denominator = (Math.pow((1 + monthlyInterestRate),periods)) - 1;
     
     let monthlyRate = (principle * (numerator / denominator)).toFixed(2);
+    
     return name + ', your monthly rate is $' + monthlyRate;
  }
 
 mortgageCalculator('Oscar');
-console.log(mortgageCalculator('Oscar'));
+// console.log(mortgageCalculator('Oscar'));
 
 
 
@@ -70,7 +79,26 @@ For example,
 mortgageCalculator(2000000, 0.05, 30); <-- should return 1,073.64
 */
 
+function mortgageCalculator(name,principleInput,interestRateInput,yearsInput){
+    let principle = principleInput;
+    let interestRate = interestRateInput;
+    let years = yearsInput;
+    
+    let monthlyInterestRate = interestRate / 12;
 
+    let periods = years * 12;
+    
+    let numerator = (monthlyInterestRate * (Math.pow((1 + monthlyInterestRate),periods)));
+    
+    let denominator = (Math.pow((1 + monthlyInterestRate),periods)) - 1;
+    
+    let monthlyRate = (principle * (numerator / denominator)).toFixed(2);
+    
+    return name + ', your monthly rate is $' + monthlyRate;
+ }
+
+mortgageCalculator('Oscar', 200000, 0.05,30);
+console.log(mortgageCalculator('Oscar', 200000, 0.05,30));
 
 
 

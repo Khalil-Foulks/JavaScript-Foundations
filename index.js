@@ -38,13 +38,9 @@ When your math is correct, monthlyRate will equal 1073.64
 
 let numerator = (monthlyInterestRate * (Math.pow((1 + monthlyInterestRate),periods)));
 
-console.log(numerator);
-
 let denominator = (Math.pow((1 + monthlyInterestRate),periods)) - 1;
-console.log(denominator);
 
 let monthlyRate = (principle * (numerator / denominator)).toFixed(2);
-console.log(monthlyRate);
 
 
 // 🏡 Task 3: Function
@@ -54,11 +50,16 @@ If your name is `Oscar` mortgageCalculator() should return "Oscar, your monthly 
 */
 
  function mortgageCalculator(name){
-     return name + ', your monthly rate is $' + monthlyRate;
+    let numerator = (monthlyInterestRate * (Math.pow((1 + monthlyInterestRate),periods)));
+    
+    let denominator = (Math.pow((1 + monthlyInterestRate),periods)) - 1;
+    
+    let monthlyRate = (principle * (numerator / denominator)).toFixed(2);
+    return name + ', your monthly rate is $' + monthlyRate;
  }
 
 mortgageCalculator('Oscar');
- console.log(mortgageCalculator('Oscar'));
+console.log(mortgageCalculator('Oscar'));
 
 
 

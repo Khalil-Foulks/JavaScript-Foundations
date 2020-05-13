@@ -141,7 +141,7 @@ function mortgageCalculator(name,P,I,N,creditScore){
  
 
 mortgageCalculator('Oscar', 200000, 0.05,30,750);
-console.log(mortgageCalculator('Oscar', 200000, 0.05,30,740));
+//console.log(mortgageCalculator('Oscar', 200000, 0.05,30,740));
 
 
 
@@ -167,49 +167,44 @@ For example, variableInterestRate(200000, 0.04, 30) should console.log:
         let principle = P;
         let interestRate = I;
         let years = N;
-        let newRate = I - .02;
-        for (let i = 0; i <= 10; i++){
-        console.log(newRate + .005)
+
+        for (let newRate = interestRate - .02; newRate < interestRate + .02; newRate += .005){
+
+            if (creditScore > 740){
+                let monthlyInterestRate = (newRate - .005) / 12; 
+                let periods = years * 12;
+                let numerator = (monthlyInterestRate * (Math.pow((1 + monthlyInterestRate),periods)));
+                let denominator = (Math.pow((1 + monthlyInterestRate),periods)) - 1;
+                let monthlyRate = principle * (numerator / denominator);
+                
+                console.log(name + ' with an interest rate of ' +  newRate.toFixed(3)  +', your monthly rate is $' + Math.round(monthlyRate));
+
+                
+            } else if (creditScore < 660){
+                let monthlyInterestRate = (newRate + .005) / 12;
+                let periods = years * 12;
+                let numerator = (monthlyInterestRate * (Math.pow((1 + monthlyInterestRate),periods)));
+                let denominator = (Math.pow((1 + monthlyInterestRate),periods)) - 1;
+                let monthlyRate = principle * (numerator / denominator);
+            
+                console.log(name + ' with an interest rate of ' +  newRate.toFixed(3)  +', your monthly rate is $' + Math.round(monthlyRate));
+            } else{
+                let monthlyInterestRate = newRate / 12;
+                let periods = years * 12;
+                let numerator = (monthlyInterestRate * (Math.pow((1 + monthlyInterestRate),periods)));
+                let denominator = (Math.pow((1 + monthlyInterestRate),periods)) - 1;
+                let monthlyRateFloat = principle * (numerator / denominator);
+                let monthlyRate = Math.round(monthlyRateFloat);
+                
+
+                console.log(name + ' with an interest rate of ' +  newRate.toFixed(3)  +', your monthly rate is $' + Math.round(monthlyRate));
+             
+            } 
+
         }
 
-        if (creditScore > 740){
-            let interestRate = I * (1- 0.05);
-            let monthlyInterestRate = interestRate / 12;
-            let periods = years * 12;
-            let numerator = (monthlyInterestRate * (Math.pow((1 + monthlyInterestRate),periods)));
-            let denominator = (Math.pow((1 + monthlyInterestRate),periods)) - 1;
-            let monthlyRateFloat = principle * (numerator / denominator);
-            let monthlyRate = Math.round(monthlyRateFloat);
-            
-            return name + ' with an interest rate of ' + newRate +', your monthly rate is $' + monthlyRate;
-
-            
-        } else if (creditScore < 660){
-            let interestRate = I * (1 + 0.05)
-            let monthlyInterestRate = (interestRate + .05 ) / 12;
-            let periods = years * 12;
-            let numerator = (monthlyInterestRate * (Math.pow((1 + monthlyInterestRate),periods)));
-            let denominator = (Math.pow((1 + monthlyInterestRate),periods)) - 1;
-            let monthlyRateFloat = principle * (numerator / denominator);
-            let monthlyRate = Math.round(monthlyRateFloat);
-           
-            return name + ' with an interest rate of ' + newRate +', your monthly rate is $' + monthlyRate;
-        } else{
-            let monthlyInterestRate = interestRate / 12;
-            let periods = years * 12;
-            let numerator = (monthlyInterestRate * (Math.pow((1 + monthlyInterestRate),periods)));
-            let denominator = (Math.pow((1 + monthlyInterestRate),periods)) - 1;
-            let monthlyRateFloat = principle * (numerator / denominator);
-            let monthlyRate = Math.round(monthlyRateFloat);
-           
-            return name + ' with an interest rate of ' + newRate +', your monthly rate is $' + monthlyRate;
-        } 
-
     }
-
-
-// variableInterestRate('Oscar', 200000, 0.04,30);
-console.log(variableInterestRate('Oscar', 200000, 0.04,30));
+    console.log(variableInterestRate('Oscar', 200000, 0.04,30));
 
 
 

@@ -43,7 +43,7 @@ console.log(numerator);
 let denominator = (Math.pow((1 + monthlyInterestRate),periods)) - 1;
 console.log(denominator);
 
-let monthlyRate = principle * (numerator / denominator);
+let monthlyRate = (principle * (numerator / denominator)).toFixed(2);
 console.log(monthlyRate);
 
 
